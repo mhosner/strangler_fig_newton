@@ -1,6 +1,6 @@
 # Strangler Fig Newton
 
-A Claude Code plugin for legacy displacement: systematically migrating monoliths to microservices with confidence.
+A Claude Code plugin for systematically migrating legacy monoliths to microservices, inspired by Martin Fowler's Strangler Fig pattern and the awesome Obra Superpowers approach and architecture. 
 
 ## Overview
 
