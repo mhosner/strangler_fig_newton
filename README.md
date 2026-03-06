@@ -101,15 +101,19 @@ State is persisted in `.sfn/` within your project, so you can pause and resume a
 - **`/sfn-status`** — View current migration progress and state
 - **`/sfn-rollback`** — Revert a migration to the previous state
 
-### Subagents
+### Subagents (Discovery)
 
-Behind the scenes, specialized subagents handle the heavy lifting:
-- **Codebase Chunker** — Segments code into semantic units
-- **Entity Relationship Extractor** — Identifies models, services, endpoints
-- **Data Flow Tracer** — Maps how data moves through the system
-- **Reverse Engineer** — Extracts business rules from legacy code
-- **Spec Generator** — Creates executable specifications and contracts
-- **Forward Engineer** — TDD scaffolds the new service
+Lightweight subagents run in parallel on Sonnet for fast, read-only analysis:
+- **Codebase Chunker** — Segments code into semantic modules
+- **Entity Relationship Extractor** — Identifies DB tables, queues, and their relationships
+- **Data Flow Tracer** — Maps upstream sources and downstream consumers
+
+### Skills (Migration)
+
+Context-heavy skills run in the main conversation for deep reasoning and user interaction:
+- **Reverse Engineer** — Extracts business rules from legacy code (not the code itself)
+- **Spec Generator** — Creates executable test specifications as the contract between old and new
+- **Forward Engineer** — TDD builds the new service (RED-GREEN-REFACTOR per spec)
 
 ## Project Structure
 
@@ -162,7 +166,8 @@ strangler_fig_newton/
 │       ├── audit-trail.ts
 │       └── index.ts
 ├── commands/                      # Slash command definitions (markdown)
-├── agents/                        # Subagent definitions (markdown)
+├── agents/                        # Discovery subagent definitions (markdown)
+├── skills/                        # Migration skill definitions (markdown)
 ├── package.json
 ├── tsconfig.json
 ├── CLAUDE.md                      # Plugin development guide

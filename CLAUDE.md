@@ -31,7 +31,8 @@ A Claude Code plugin for legacy displacement: systematically migrating monoliths
 - `src/migration/` — Phase 4: strategy registry, 4 strategies, reverse/forward engineer, spec generator, orchestrator
 - `src/verification/` — Phase 5: parallel runner, traffic diverter, monitoring generator, rollback manager, audit trail
 - `commands/` — Slash command definitions (markdown)
-- `agents/` — Subagent definitions (markdown)
+- `agents/` — Discovery subagent definitions (parallel, read-only, Sonnet)
+- `skills/` — Migration skill definitions (sequential, context-heavy, main model)
 
 ## Build & Test
 
