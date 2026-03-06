@@ -1,0 +1,31 @@
+{
+  "name": "strangler-fig-newton",
+  "version": "0.1.0",
+  "description": "Claude Code plugin: autonomous workflow-driven legacy displacement (monolith to microservices)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "claude-code",
+    "strangler-fig",
+    "legacy-displacement",
+    "monolith",
+    "microservices",
+    "superpowers"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
