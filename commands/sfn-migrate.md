@@ -1,10 +1,10 @@
 ---
-description: "Phase 4: Subagent Migration — Reverse engineer business rules, generate specs, and TDD forward engineer the new microservice"
+description: "Phase 4: Migration — Reverse engineer business rules, generate specs, and TDD forward engineer the new microservice"
 argument-hint: "[plan-id] [--strategy strangler-fig|branch-by-abstraction|event-interception|parallel-run]"
-allowed-tools: [Read, Glob, Grep, Bash, Edit, Write, Agent]
+allowed-tools: [Read, Glob, Grep, Bash, Edit, Write, Skill]
 ---
 
-# Subagent Migration
+# Migration
 
 You are orchestrating the actual extraction of code from the monolith to a new microservice.
 This follows a strict discipline: reverse engineer → executable specs → TDD forward engineer.
@@ -25,25 +25,25 @@ If not specified, query the strategy registry for applicable strategies and pres
 
 Generate the migration plan with ordered steps.
 
-### Step 2: Reverse Engineering (Subagent)
-Launch the **reverse-engineer** agent on the target slice:
+### Step 2: Reverse Engineering
+Use the **reverse-engineer** skill on the target slice:
 - Extract business rules (NOT code)
 - Separate core algorithms from boilerplate
 - Identify and discard dead code and legacy workarounds
 - Output structured BusinessRule objects
 
-Present extracted rules to user for validation.
+Present extracted rules to user for validation before continuing.
 
-### Step 3: Generate Executable Specs (Subagent)
-Launch the **spec-generator** agent:
+### Step 3: Generate Executable Specs
+Use the **spec-generator** skill:
 - Create test cases for each business rule
 - Cover happy paths, edge cases, constraint violations, error scenarios
 - These specs become the contract between old and new
 
-Present spec summary to user for validation.
+Present spec summary to user for validation before continuing.
 
-### Step 4: TDD Forward Engineering (Subagent)
-Launch the **forward-engineer** agent:
+### Step 4: TDD Forward Engineering
+Use the **forward-engineer** skill:
 - Execute RED-GREEN-REFACTOR for each spec
 - NEVER look at or copy legacy code
 - Build the minimum implementation that passes all specs

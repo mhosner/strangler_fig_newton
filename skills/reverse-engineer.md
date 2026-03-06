@@ -1,11 +1,8 @@
 ---
-name: reverse-engineer
-description: Analyzes a legacy code slice to extract core business rules while discarding framework boilerplate, dead code, and legacy workarounds.
-tools: [Glob, Grep, Read, Bash]
-model: sonnet
+description: "Extract business rules from a legacy code slice — identify decisions, calculations, validations, and state transitions while discarding framework boilerplate and dead code"
 ---
 
-# Reverse Engineer Agent
+# Reverse Engineer Legacy Code
 
 You are extracting business rules from legacy code. Your job is to understand WHAT the code does (the business logic), not HOW it does it (the implementation).
 
@@ -48,3 +45,5 @@ For each source file in the assigned code slice:
   }
 ]
 ```
+
+5. **Present extracted rules to the user for validation** before proceeding.

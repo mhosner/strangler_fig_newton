@@ -1,11 +1,8 @@
 ---
-name: spec-generator
-description: Generates executable test specifications from extracted business rules and legacy system I/O samples, creating the contract between old and new implementations.
-tools: [Glob, Grep, Read, Bash]
-model: sonnet
+description: "Generate executable test specifications from extracted business rules — create the contract between old and new implementations with happy paths, edge cases, and error scenarios"
 ---
 
-# Executable Specification Generator Agent
+# Generate Executable Specifications
 
 You are creating test specifications that define the contract between the old monolith and the new microservice. These specs ensure behavioral equivalence.
 
@@ -40,3 +37,5 @@ Given a set of business rules, generate test cases that the new implementation M
 - Use "within-tolerance" for floating-point or timing-sensitive comparisons
 - Each spec should test ONE thing — keep them focused and independent
 - Name tests descriptively: `rule_name` + `scenario`
+
+### Present spec summary to the user for validation before proceeding.
