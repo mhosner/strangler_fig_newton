@@ -1,4 +1,4 @@
-import { readdirSync, statSync } from 'node:fs';
+import { readdirSync, statSync, realpathSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import type { MonolithProfile, CodeChunk, SupportedLanguage } from '../core/types.js';
 import { generateId } from '../core/utils.js';
@@ -37,12 +37,14 @@ export class CodebaseChunker {
   private findModuleRoots(rootPath: string, language: SupportedLanguage): string[] {
     const roots: string[] = [];
     const moduleMarkers = this.getModuleMarkers(language);
+    const extensionMarkers = this.getExtensionMarkers(language);
 
     this.walkShallow(rootPath, (dirPath, depth) => {
       if (depth > 3) return false;
       const entries = readdirSync(dirPath).filter((e) => !IGNORE_DIRS.has(e));
 
-      const isModule = moduleMarkers.some((marker) => entries.includes(marker));
+      const isModule = moduleMarkers.some((marker) => entries.includes(marker))
+        || extensionMarkers.some((ext) => entries.some((e) => e.endsWith(ext)));
       if (isModule && dirPath !== rootPath) {
         roots.push(dirPath);
         return false; // don't recurse into module children
@@ -62,7 +64,14 @@ export class CodebaseChunker {
       case 'java': return ['pom.xml', 'build.gradle', 'build.gradle.kts'];
       case 'node': return ['package.json'];
       case 'python': return ['setup.py', 'pyproject.toml', '__init__.py'];
-      case 'dotnet': return []; // .csproj is detected by extension below
+      case 'dotnet': return [];
+    }
+  }
+
+  private getExtensionMarkers(language: SupportedLanguage): string[] {
+    switch (language) {
+      case 'dotnet': return ['.csproj'];
+      default: return [];
     }
   }
 
@@ -91,14 +100,25 @@ export class CodebaseChunker {
     }
   }
 
-  private countFiles(dir: string): number {
+  private countFiles(dir: string, depth = 0, seen?: Set<string>): number {
+    if (depth > 50) return 0;
+    const visited = seen ?? new Set<string>();
+    let realDir: string;
+    try {
+      realDir = realpathSync(dir);
+    } catch {
+      return 0;
+    }
+    if (visited.has(realDir)) return 0;
+    visited.add(realDir);
+
     let count = 0;
     try {
       const entries = readdirSync(dir, { withFileTypes: true });
       for (const entry of entries) {
         if (IGNORE_DIRS.has(entry.name)) continue;
         if (entry.isFile()) count++;
-        else if (entry.isDirectory()) count += this.countFiles(join(dir, entry.name));
+        else if (entry.isDirectory()) count += this.countFiles(join(dir, entry.name), depth + 1, visited);
       }
     } catch {
       // skip inaccessible
