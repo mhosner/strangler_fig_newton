@@ -2,5 +2,5 @@ node_modules/
 dist/
 .sfn/
 test/fixtures/Mono2Micro-Example/
-docs/superpowers/plans/2026-03-11-commands-to-skills-refactor.md
+docs/
 demo.cast
