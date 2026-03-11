@@ -68,7 +68,7 @@ Deploy safely and validate. The plugin:
 
 Clone the repository:
 ```bash
-git clone https://github.com/matt/strangler_fig_newton
+git clone https://github.com/mhosner/strangler_fig_newton
 cd strangler_fig_newton
 npm install
 ```

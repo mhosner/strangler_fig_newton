@@ -5,8 +5,8 @@
   "author": {
     "name": "Matt"
   },
-  "homepage": "https://github.com/matt/strangler_fig_newton",
-  "repository": "https://github.com/matt/strangler_fig_newton",
+  "homepage": "https://github.com/mhosner/strangler_fig_newton",
+  "repository": "https://github.com/mhosner/strangler_fig_newton",
   "license": "MIT",
   "keywords": [
     "strangler-fig",
