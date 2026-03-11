@@ -1,0 +1,19 @@
+{
+  "name": "strangler-fig-newton",
+  "description": "Systematically migrate legacy monoliths to microservices using the Strangler Fig pattern — 5-phase workflow: Discovery, Planning, Scaffolding, Migration, Cutover",
+  "version": "1.0.0",
+  "author": {
+    "name": "Matt"
+  },
+  "homepage": "https://github.com/matt/strangler_fig_newton",
+  "repository": "https://github.com/matt/strangler_fig_newton",
+  "license": "MIT",
+  "keywords": [
+    "strangler-fig",
+    "legacy-displacement",
+    "monolith",
+    "microservices",
+    "migration",
+    "architecture"
+  ]
+}

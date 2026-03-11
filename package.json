@@ -1,7 +1,13 @@
 {
   "name": "strangler-fig-newton",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Claude Code plugin: autonomous workflow-driven legacy displacement (monolith to microservices)",
+  "author": "Matt",
+  "homepage": "https://github.com/matt/strangler_fig_newton",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matt/strangler_fig_newton.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

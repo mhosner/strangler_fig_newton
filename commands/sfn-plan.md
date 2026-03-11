@@ -4,4 +4,4 @@ argument-hint: "[--type product-line|value-stream]"
 allowed-tools: [Read, Glob, Grep, Bash, Skill]
 ---
 
-Use the `sfn-plan` skill with $ARGUMENTS.
+Use the `strangler-fig-newton:sfn-plan` skill with $ARGUMENTS.

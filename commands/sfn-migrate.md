@@ -26,7 +26,7 @@ If not specified, query the strategy registry for applicable strategies and pres
 Generate the migration plan with ordered steps.
 
 ### Step 2: Reverse Engineering
-Use the **reverse-engineer** skill on the target slice:
+Use the **strangler-fig-newton:reverse-engineer** skill on the target slice:
 - Extract business rules (NOT code)
 - Separate core algorithms from boilerplate
 - Identify and discard dead code and legacy workarounds
@@ -35,7 +35,7 @@ Use the **reverse-engineer** skill on the target slice:
 Present extracted rules to user for validation before continuing.
 
 ### Step 3: Generate Executable Specs
-Use the **spec-generator** skill:
+Use the **strangler-fig-newton:spec-generator** skill:
 - Create test cases for each business rule
 - Cover happy paths, edge cases, constraint violations, error scenarios
 - These specs become the contract between old and new
@@ -43,7 +43,7 @@ Use the **spec-generator** skill:
 Present spec summary to user for validation before continuing.
 
 ### Step 4: TDD Forward Engineering
-Use the **forward-engineer** skill:
+Use the **strangler-fig-newton:forward-engineer** skill:
 - Execute RED-GREEN-REFACTOR for each spec
 - NEVER look at or copy legacy code
 - Build the minimum implementation that passes all specs

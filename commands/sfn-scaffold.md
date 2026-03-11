@@ -4,4 +4,4 @@ argument-hint: "[plan-id]"
 allowed-tools: [Read, Glob, Grep, Bash, Skill]
 ---
 
-Use the `sfn-scaffold` skill with $ARGUMENTS.
+Use the `strangler-fig-newton:sfn-scaffold` skill with $ARGUMENTS.

@@ -4,4 +4,4 @@ argument-hint: "[plan-id]"
 allowed-tools: [Read, Glob, Grep, Bash, Edit, Write, Skill]
 ---
 
-Use the `sfn-cutover` skill with $ARGUMENTS.
+Use the `strangler-fig-newton:sfn-cutover` skill with $ARGUMENTS.
