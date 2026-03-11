@@ -30,7 +30,7 @@ All workflow logic moves from command files into corresponding skill files. Comm
 - `commands/sfn-cutover.md` — stub only
 
 **Unchanged (5 files):**
-- `commands/sfn-migrate.md` — already delegates to sub-skills
+- `commands/sfn-migrate.md` — exempt: its body is itself an orchestrator that coordinates three sub-skills (`reverse-engineer`, `spec-generator`, `forward-engineer`); extracting it to a skill would add a layer with no benefit
 - `commands/sfn-status.md` — no workflow logic to extract
 - `commands/sfn-rollback.md` — no workflow logic to extract
 - `skills/reverse-engineer.md` — unchanged
@@ -49,14 +49,26 @@ Matches existing `reverse-engineer.md` pattern:
 ---
 description: "Phase N: <original description>"
 argument-hint: "<original hint>"
-allowed-tools: [<original tools>]
+allowed-tools: [<original tools> + Skill]
 ---
 
-Use the `sfn-<phase>` skill to run <phase> on $ARGUMENTS.
+Use the `sfn-<phase>` skill with $ARGUMENTS.
 ```
 
-Commands retain: `description`, `argument-hint`, `allowed-tools` frontmatter.
+Commands retain: `description`, `argument-hint`, original `allowed-tools` **plus `Skill`**.
 Commands lose: all workflow body content (moves to skill).
+
+**`allowed-tools` for each stub (all must include `Skill`):**
+- `sfn-discover`: `[Read, Glob, Grep, Bash, Agent, Skill]` — `Agent` retained so the skill can launch discovery subagents; tool permissions are governed by the calling command, not the skill itself
+- `sfn-plan`:     `[Read, Glob, Grep, Bash, Skill]`
+- `sfn-scaffold`: `[Read, Glob, Grep, Bash, Skill]`
+- `sfn-cutover`:  `[Read, Glob, Grep, Bash, Edit, Write, Skill]`
+
+**`$ARGUMENTS` passthrough:** Each stub passes `$ARGUMENTS` directly to the skill. Arguments may be empty — skills handle missing arguments via their prerequisites check (e.g. `sfn-plan` prompts for `--type` if not provided). Stub wording should use neutral phrasing (`with $ARGUMENTS`) rather than implying a specific argument shape.
+
+### Cross-references in Skill Bodies
+
+Each phase workflow ends with a "next step" recommendation (e.g. `Recommend next step: /sfn-scaffold`). These references to slash commands are intentionally preserved in the skill bodies — they remain valid because users still invoke the next phase via its command.
 
 ## Outcome
 
