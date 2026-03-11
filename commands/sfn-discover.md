@@ -1,5 +1,5 @@
 ---
-description: "Phase 1: AI-Assisted Discovery — Scan and analyze a monolith codebase before any modernization planning begins"
+description: "Phase 1: SFN-Assisted Discovery — Scan and analyze a monolith codebase before any modernization planning begins"
 argument-hint: "[path-to-monolith]"
 allowed-tools: [Read, Glob, Grep, Bash, Agent]
 ---

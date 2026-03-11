@@ -1,4 +1,4 @@
 node_modules/
 dist/
 .sfn/
-tests/sample/Mono2Micro-Example.zip
+test/fixtures/Mono2Micro-Example/
