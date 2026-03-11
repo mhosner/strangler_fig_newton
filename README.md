@@ -108,9 +108,17 @@ Lightweight subagents run in parallel on Sonnet for fast, read-only analysis:
 - **Entity Relationship Extractor** — Identifies DB tables, queues, and their relationships
 - **Data Flow Tracer** — Maps upstream sources and downstream consumers
 
-### Skills (Migration)
+### Skills
 
-Context-heavy skills run in the main conversation for deep reasoning and user interaction:
+Slash commands are thin wrappers—each invokes a skill that contains the full workflow logic. Skills run in the main conversation for deep reasoning and user interaction.
+
+**Workflow skills** (one per phase):
+- **sfn-discover** — Full discovery workflow: detect stack, run subagents, compile and persist results
+- **sfn-plan** — Full planning workflow: extract slices, rank by risk, generate modernization plan
+- **sfn-scaffold** — Full scaffolding workflow: recommend patterns, design seams, configure parameters
+- **sfn-cutover** — Full cutover workflow: parallel run, traffic diversion, monitoring, rollback
+
+**Migration sub-skills** (invoked by `sfn-migrate`):
 - **Reverse Engineer** — Extracts business rules from legacy code (not the code itself)
 - **Spec Generator** — Creates executable test specifications as the contract between old and new
 - **Forward Engineer** — TDD builds the new service (RED-GREEN-REFACTOR per spec)
@@ -165,9 +173,9 @@ strangler_fig_newton/
 │       ├── rollback-manager.ts
 │       ├── audit-trail.ts
 │       └── index.ts
-├── commands/                      # Slash command definitions (markdown)
+├── commands/                      # Slash command entry points (thin wrappers invoking skills)
 ├── agents/                        # Discovery subagent definitions (markdown)
-├── skills/                        # Migration skill definitions (markdown)
+├── skills/                        # Workflow and migration skill definitions (markdown)
 ├── package.json
 ├── tsconfig.json
 ├── CLAUDE.md                      # Plugin development guide
